@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>脳科学・心理学の最新知見 — HSS型HSP・うつ病を生きる人へ</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21253a;
+      --border: #2e3350;
+      --accent-blue: #5b8dee;
+      --accent-purple: #8b6ee8;
+      --accent-teal: #4ecdc4;
+      --accent-rose: #e86e8b;
+      --accent-amber: #f0b429;
+      --text-primary: #e8eaf0;
+      --text-secondary: #9aa3c0;
+      --text-muted: #5e6787;
+      --gradient-hero: linear-gradient(135deg, #1a1d27 0%, #12162e 50%, #1a1d27 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--gradient-hero);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 30% 50%, rgba(91,141,238,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 350px at 75% 40%, rgba(139,110,232,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      border: 1px solid rgba(78,205,196,.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #e8eaf0 0%, #9aa3c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .badge {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid;
+    }
+    .badge-blue  { color: var(--accent-blue);   border-color: rgba(91,141,238,.35);  background: rgba(91,141,238,.08);  }
+    .badge-purple{ color: var(--accent-purple); border-color: rgba(139,110,232,.35); background: rgba(139,110,232,.08); }
+    .badge-teal  { color: var(--accent-teal);   border-color: rgba(78,205,196,.35);  background: rgba(78,205,196,.08);  }
+    .badge-rose  { color: var(--accent-rose);   border-color: rgba(232,110,139,.35); background: rgba(232,110,139,.08); }
+    .badge-amber { color: var(--accent-amber);  border-color: rgba(240,180,41,.35);  background: rgba(240,180,41,.08);  }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== NAV ===== */
+    .nav-bar {
+      background: rgba(26,29,39,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-btn {
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--surface2);
+      color: var(--text-primary);
+    }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .section-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .icon-blue   { background: rgba(91,141,238,.15);  }
+    .icon-purple { background: rgba(139,110,232,.15); }
+    .icon-teal   { background: rgba(78,205,196,.15);  }
+    .icon-rose   { background: rgba(232,110,139,.15); }
+    .icon-amber  { background: rgba(240,180,41,.15);  }
+
+    .section-title {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 700;
+    }
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== CARDS ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .card-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-blue   { background: var(--accent-blue);   }
+    .dot-purple { background: var(--accent-purple); }
+    .dot-teal   { background: var(--accent-teal);   }
+    .dot-rose   { background: var(--accent-rose);   }
+    .dot-amber  { background: var(--accent-amber);  }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== WIDE CARD ===== */
+    .card-wide {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+    .card-wide h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight {
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      border-left: 3px solid;
+    }
+    .hl-blue   { background: rgba(91,141,238,.08);   border-color: var(--accent-blue);   }
+    .hl-purple { background: rgba(139,110,232,.08);  border-color: var(--accent-purple); }
+    .hl-teal   { background: rgba(78,205,196,.08);   border-color: var(--accent-teal);   }
+    .hl-rose   { background: rgba(232,110,139,.08);  border-color: var(--accent-rose);   }
+    .hl-amber  { background: rgba(240,180,41,.08);   border-color: var(--accent-amber);  }
+
+    .highlight strong { display: block; font-size: 13px; margin-bottom: 6px; }
+    .highlight p { font-size: 13px; color: var(--text-secondary); }
+
+    /* ===== BRAIN MAP ===== */
+    .brain-map {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .brain-region {
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .brain-region-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .brain-region p {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple), var(--accent-teal));
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: 2px solid var(--bg);
+    }
+    .tl-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .tl-item p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .tl-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      letter-spacing: .05em;
+    }
+
+    /* ===== TABLE ===== */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .compare-table th {
+      background: var(--surface2);
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .compare-table tr:hover td { background: var(--surface2); color: var(--text-primary); }
+    .compare-table .col-topic { color: var(--text-primary); font-weight: 500; }
+
+    /* ===== TIPS ===== */
+    .tip-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .tip-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .tip-list li:hover {
+      border-color: rgba(91,141,238,.4);
+      color: var(--text-primary);
+    }
+    .tip-num {
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ===== CAUTION ===== */
+    .caution {
+      background: rgba(240,180,41,.06);
+      border: 1px solid rgba(240,180,41,.25);
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .caution-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ===== SOURCES ===== */
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .source-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .source-item span { display: block; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; font-size: 11px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 40px; }
+      .section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">2024–2025 最新研究まとめ</div>
+  <h1>脳科学・心理学の最前線<br>— HSS型HSP・うつ病を生きる人へ</h1>
+  <p class="hero-sub">
+    神経科学・臨床心理学の最新知見をもとに、あなたの脳とこころの仕組みを解説します。
+    知ることは、生きやすくなる第一歩。
+  </p>
+  <div class="hero-badges">
+    <span class="badge badge-blue">脳神経科学</span>
+    <span class="badge badge-purple">HSP / SPS研究</span>
+    <span class="badge badge-teal">HSS型の特性</span>
+    <span class="badge badge-rose">うつ病の最新研究</span>
+    <span class="badge badge-amber">セルフケア戦略</span>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <button class="nav-btn" onclick="scrollTo('sec-hsp')">HSPとは</button>
+    <button class="nav-btn" onclick="scrollTo('sec-hss')">HSS型の矛盾</button>
+    <button class="nav-btn" onclick="scrollTo('sec-brain')">脳の仕組み</button>
+    <button class="nav-btn" onclick="scrollTo('sec-depression')">うつ病研究</button>
+    <button class="nav-btn" onclick="scrollTo('sec-treatment')">最新治療</button>
+    <button class="nav-btn" onclick="scrollTo('sec-overlap')">HSP×うつ</button>
+    <button class="nav-btn" onclick="scrollTo('sec-tips')">セルフケア</button>
+    <button class="nav-btn" onclick="scrollTo('sec-sources')">参考文献</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- ===== SECTION 1: HSP ===== -->
+  <section class="section" id="sec-hsp">
+    <div class="section-header">
+      <div class="section-icon icon-blue">🧠</div>
+      <div>
+        <div class="section-title">HSP（高感受性）とは何か</div>
+        <div class="section-desc">感覚処理感受性（SPS）の神経科学的な定義と最新知見</div>
+      </div>
+    </div>
+
+    <div class="highlight hl-blue">
+      <strong>定義（Aron & Aron, 1997 / 2024年更新研究）</strong>
+      <p>高感受性（Sensory Processing Sensitivity：SPS）は、外部・内部の刺激を深く処理し、感情反応が強く、過刺激になりやすく、細部に気づきやすい生来の気質特性。世界人口の約<strong>20〜30%</strong>に存在し、ほぼすべての動物種でも確認されている進化的に保存された特性。</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-blue"></div><h3>深い処理（D）</h3></div>
+        <p>情報を表面的に処理せず、多層的・関連的に考える。意思決定に時間がかかるが、洞察力が高い。fMRIで前頭前野と島皮質の強い活性が確認されている。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-purple"></div><h3>過刺激（O）</h3></div>
+        <p>神経系が飽和しやすく、騒音・強い光・人混みで疲弊する。2025年のEEG研究では、HSPグループは中心・頭頂・側頭部で安静時の脳波活動が有意に高かった。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-teal"></div><h3>感情反応性（E）</h3></div>
+        <p>喜怒哀楽の振れ幅が大きく、共感能力が高い。ネガティブ体験への感受性が高い一方、ポジティブな環境でも非HSPより大きく恩恵を受ける（感受性の二刀流）。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-rose"></div><h3>感覚の繊細さ（S）</h3></div>
+        <p>微細な変化（においの変化、気温の微差、場の空気）を無意識に感知する。島皮質と扁桃体の高い連結性が基盤にあると考えられている。</p>
+      </div>
+    </div>
+
+    <div class="caution">
+      <div class="caution-icon">⚠️</div>
+      <div>
+        <strong style="display:block; margin-bottom:4px; color: var(--accent-amber);">学術的な注意点</strong>
+        HSPは診断名でも精神疾患でもなく、気質特性の一つです。「○○型HSP」というサブタイプ分類（HSS型など）は一般向けの説明モデルであり、学術的に検証されたカテゴリではありません。ただし、高感受性（SPS）とHigh Sensation Seeking（HSS）の組み合わせが実生活で生む葛藤は多くの研究で間接的に支持されています。
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2: HSS ===== -->
+  <section class="section" id="sec-hss">
+    <div class="section-header">
+      <div class="section-icon icon-purple">⚡</div>
+      <div>
+        <div class="section-title">HSS型HSP — 矛盾する二つの神経系</div>
+        <div class="section-desc">感受性の高さと刺激希求の間で揺れる脳の構造</div>
+      </div>
+    </div>
+
+    <div class="card-wide">
+      <h3>🔬 HSS（High Sensation Seeking）とは</h3>
+      <p style="font-size:13px; color: var(--text-secondary);">
+        HSS（高度刺激希求性）は、新奇性・スリル・変化・強い刺激を積極的に求める傾向。ドーパミン系と関連し、DRD4 7R遺伝子型（ドーパミン受容体）との関連が示されている。HSSは世界人口の約25〜30%に存在するとされる。
+      </p>
+    </div>
+
+    <div class="highlight hl-purple">
+      <strong>HSS + HSP の内部矛盾</strong>
+      <p>「刺激を求めて飛び込む（HSS）」が「刺激に傷つく（HSP）」という二つの神経系が同居する状態。行動の後に深く疲弊し、そのギャップが自己不信や慢性的な消耗につながりやすい。</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-purple"></div><h3>ドーパミン回路（求める）</h3></div>
+        <p>腹側被蓋野（VTA）→側坐核→前頭前野の報酬回路が活発。新しい体験に強く引き寄せられ、退屈を苦痛として感じる。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-rose"></div><h3>扁桃体（警戒する）</h3></div>
+        <p>同時に扁桃体の過活動が存在し、体験中・後に不安や後悔が押し寄せる。「やってみたい」と「でも怖い」が繰り返される。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-amber"></div><h3>慢性的な消耗</h3></div>
+        <p>刺激希求で行動→過刺激で疲弊→自己批判→回復のサイクルが繰り返される。このパターンが長期化すると燃え尽き症候群やうつに移行しやすい。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-teal"></div><h3>強みとしての側面</h3></div>
+        <p>深い処理能力と行動力の組み合わせは、クリエイティブな職域や問題解決で強みになる。適切な刺激量を知ることが鍵。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: BRAIN ===== -->
+  <section class="section" id="sec-brain">
+    <div class="section-header">
+      <div class="section-icon icon-teal">🔬</div>
+      <div>
+        <div class="section-title">HSPの脳 — 神経科学的な証拠</div>
+        <div class="section-desc">fMRI・EEG・遺伝子研究が明らかにした脳内メカニズム</div>
+      </div>
+    </div>
+
+    <div class="brain-map">
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-rose);">扁桃体</div>
+        <p>恐怖・感情処理の中枢。HSPでは通常より強く活性化し、中立的な刺激でも脅威として反応しやすい。セロトニントランスポーター（5-HTTLPR）のs型変異と関連。</p>
+      </div>
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-blue);">島皮質（インスラ）</div>
+        <p>身体感覚・共感・直感の処理に関与。HSPでは他者の感情体験時に強く活性化し、高い共感能力の神経基盤となっている。</p>
+      </div>
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-teal);">海馬</div>
+        <p>記憶形成と文脈処理の中枢。HSPは体験の記憶痕跡が濃くなりやすく、過去の出来事を繰り返し想起しやすい。うつ病では萎縮が報告されている領域でもある。</p>
+      </div>
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-purple);">前頭前野（PFC）</div>
+        <p>感情調節・実行機能の司令塔。HSPでは扁桃体反応を抑制する役割を担うが、慢性ストレス時に機能低下が起こりやすい。うつ病では前頭前野のグリア細胞（オリゴデンドロサイト）の減少が確認されている。</p>
+      </div>
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-amber);">帯状回（ACC）</div>
+        <p>扁桃体と前頭前野の連絡路。s型5-HTTLPRを持つ個体では帯状回の機能的連結が低下し、感情過剰反応の抑制が難しくなることが報告されている。</p>
+      </div>
+      <div class="brain-region">
+        <div class="brain-region-name" style="color: var(--accent-teal);">腹側被蓋野（VTA）</div>
+        <p>ドーパミン報酬系の起点。HSS特性が強い場合、この回路が活発で新奇刺激への引力が強くなる。DRD4 7R遺伝子型との関連。</p>
+      </div>
+    </div>
+
+    <div class="highlight hl-teal" style="margin-top: 24px;">
+      <strong>EEG研究（2025年最新）</strong>
+      <p style="margin-bottom: 8px;"><small style="color: var(--text-muted);">EEG（脳波計、Electroencephalography）とは、頭皮に電極を貼り付けて脳の電気活動をリアルタイムで記録する検査。何ミリ秒単位の神経活動を捉えられるため、「脳がいつ・どのように情報処理しているか」を調べるのに適している。</small></p>
+      <p>安静時のEEGでHSPグループは中心・頭頂・側頭領域で高い脳波活動が確認された。これは「情報処理の高い基底活動」を示し、HSPが常に多くの情報を処理し続けている神経的証拠といえる。</p>
+    </div>
+
+    <div class="card-wide" style="margin-top: 16px;">
+      <h3>🧬 遺伝的基盤</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px;">
+        <div>
+          <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600; margin-bottom: 4px;">セロトニン系：5-HTTLPR s型</p>
+          <p style="font-size: 13px; color: var(--text-secondary);">セロトニントランスポーターの運搬効率が低く、扁桃体が外部刺激に対して過反応しやすい。世界人口の約40〜50%が保有。</p>
+        </div>
+        <div>
+          <p style="font-size: 12px; color: var(--accent-purple); font-weight: 600; margin-bottom: 4px;">ドーパミン系：DRD4 7R</p>
+          <p style="font-size: 13px; color: var(--text-secondary);">ドーパミン受容体の感受性低下により、より強い刺激を必要とする。HSS傾向と関連し、新奇性探索行動の遺伝的基盤とされる。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: DEPRESSION ===== -->
+  <section class="section" id="sec-depression">
+    <div class="section-header">
+      <div class="section-icon icon-rose">💧</div>
+      <div>
+        <div class="section-title">うつ病の脳科学 — 2024–2025年の発見</div>
+        <div class="section-desc">細胞レベルからシステムレベルまでの新しい理解</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-tag" style="background: rgba(91,141,238,.15); color: var(--accent-blue);">2024 京都大学 / Neuron掲載</span>
+        <h4>ケタミンの作用標的：視床室傍核（PVT）の発見</h4>
+        <p>ケタミン誘導体の持続的な抗うつ作用に視床室傍核という領域が重要であることを発見。従来のセロトニン仮説を超えた、グルタミン酸系経路からのアプローチが注目されている。</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag" style="background: rgba(139,110,232,.15); color: var(--accent-purple);">2025 東北大学</span>
+        <h4>転写因子 Tcf/Lef1・REST の発見</h4>
+        <p>うつ病モデルマウスで転写因子Tcf/Lef1またはRestの活性上昇を確認。薬剤でこれらを活性化すると抑うつ状態の改善が促進された。遺伝子発現レベルでの治療介入の新たな扉。</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag" style="background: rgba(78,205,196,.15); color: var(--accent-teal);">2025 国際研究（ScienceDaily）</span>
+        <h4>2種類の細胞の遺伝子発現変化を特定</h4>
+        <p>死後脳組織のゲノムマッピングにより、うつ病患者では興奮性ニューロン（気分・ストレス調節担当）とミクログリアのサブタイプ（脳内炎症管理担当）で遺伝子活動が大きく変化していることが判明。</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag" style="background: rgba(232,110,139,.15); color: var(--accent-rose);">2024–2025 東京都医学総合研究所</span>
+        <h4>前頭前野のグリア細胞（オリゴデンドロサイト）減少</h4>
+        <p>うつ病患者の前頭前野でオリゴデンドロサイト（神経の絶縁・伝導速度を担うグリア細胞）が減少。感情調節に関わる回路の「配線不良」がうつの病態に関与する可能性を示唆。</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag" style="background: rgba(240,180,41,.15); color: var(--accent-amber);">2023–2024 新薬承認</span>
+        <h4>ズラノロン（神経ステロイド系抗うつ薬）</h4>
+        <p>産後うつ治療薬として米国FDAが2023年8月承認。GABA-A受容体に作用する全く新しい機序。日本では2024年に塩野義製薬が申請を進めている。</p>
+      </div>
+    </div>
+
+    <div class="highlight hl-rose" style="margin-top: 8px;">
+      <strong>BDNF（脳由来神経栄養因子）の役割</strong>
+      <p>BDNFは神経細胞の成長・生存・シナプス可塑性を支える重要なタンパク質。うつ病患者では血中濃度が低下しており、運動・睡眠・社会的交流がBDNFを増加させることが複数研究で支持されている。</p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 5: TREATMENT ===== -->
+  <section class="section" id="sec-treatment">
+    <div class="section-header">
+      <div class="section-icon icon-amber">⚗️</div>
+      <div>
+        <div class="section-title">最新の治療・介入アプローチ</div>
+        <div class="section-desc">2024–2025年に注目を集めている神経科学的介入</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-amber"></div><h3>サイロシビン（幻覚キノコ成分）</h3></div>
+        <p>2025年の研究で、サイロシビンが大脳皮質内の「フィードバックループ」（ネガティブ思考の固定化回路）を弱めることを確認。難治性うつ病・PTSD治療として臨床試験が進行中。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-blue"></div><h3>深部脳刺激療法（DBS）</h3></div>
+        <p>治療抵抗性うつ病に対して、内側前脳束（MFB）への電気刺激が最も有効な標的として注目。2025年のメタ分析でDBSは偽刺激より有意に効果的と確認された。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-teal"></div><h3>家庭用TMS（経頭蓋磁気刺激）</h3></div>
+        <p>米国FDAが2025年、背外側前頭前野（dlPFC）に電流を送る家庭用ヘッドセットを承認。通院不要で気分障害を治療できる初の機器として注目されている。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-purple"></div><h3>ケタミン点滴療法</h3></div>
+        <p>グルタミン酸NMDA受容体への作用と視床室傍核（PVT）を介した持続的な抗うつ効果が解明された。従来の抗うつ薬（数週間）と異なり、時間単位での改善が特徴。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-rose"></div><h3>運動療法（エビデンス強化）</h3></div>
+        <p>有酸素運動がBDNFを増加させ、海馬の神経新生を促進。週150分の中強度有酸素運動が軽〜中等度うつ病に対して抗うつ薬と同等の効果を示すとする研究が蓄積されている。</p>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-dot dot-amber"></div><h3>感情受容トレーニング</h3></div>
+        <p>2024年研究（Discover Psychology）：HSPかつうつ・不安を抱える人は、ネガティブ感情の「受容」が著しく低い傾向。感情への抵抗（打ち消そうとする行為）が症状を悪化させ、受容が回復を促進する。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 6: OVERLAP ===== -->
+  <section class="section" id="sec-overlap">
+    <div class="section-header">
+      <div class="section-icon icon-rose">🔗</div>
+      <div>
+        <div class="section-title">HSP × うつ病 — 重なりと違い</div>
+        <div class="section-desc">なぜHSPはうつになりやすいのか、脳レベルの説明</div>
+      </div>
+    </div>
+
+    <div class="highlight hl-rose">
+      <strong>2025年の系統的レビュー</strong>
+      <p>14研究のレビューにより、高感受性（SPS）を持つ成人は、うつ病の有病率が有意に高いことが確認された。また、SPSとうつ病の間の媒介変数として「感情調節の困難」と「反芻思考（rumination）」が特定された。</p>
+    </div>
+
+    <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--border);">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>比較軸</th>
+            <th>HSP（気質）</th>
+            <th>うつ病（疾患）</th>
+            <th>共通する神経メカニズム</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-topic">扁桃体</td>
+            <td>生来的に過反応しやすい</td>
+            <td>ストレスにより過活動化</td>
+            <td>扁桃体の過活動 → 不安・警戒の増大</td>
+          </tr>
+          <tr>
+            <td class="col-topic">セロトニン</td>
+            <td>5-HTTLPR s型で輸送効率低下</td>
+            <td>セロトニン不足が症状に関与</td>
+            <td>セロトニン系の機能低下</td>
+          </tr>
+          <tr>
+            <td class="col-topic">前頭前野</td>
+            <td>扁桃体を抑制しようとする</td>
+            <td>グリア細胞減少で機能低下</td>
+            <td>感情調節の困難</td>
+          </tr>
+          <tr>
+            <td class="col-topic">反芻思考</td>
+            <td>深い処理が自己批判に転化</td>
+            <td>ネガティブループの固定化</td>
+            <td>皮質フィードバック回路の過活動</td>
+          </tr>
+          <tr>
+            <td class="col-topic">BDNF</td>
+            <td>慢性ストレスで低下しやすい</td>
+            <td>低下が確認されている</td>
+            <td>神経可塑性の低下</td>
+          </tr>
+          <tr>
+            <td class="col-topic">回復力</td>
+            <td>ポジティブ環境で非HSPより大きく改善</td>
+            <td>適切な治療で改善可能</td>
+            <td>神経可塑性を活かした回復</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight hl-teal" style="margin-top: 20px;">
+      <strong>「感受性の二刀流」仮説（Differential Susceptibility）</strong>
+      <p>感受性の高い人は、劣悪な環境では最もダメージを受けるが、サポーティブな環境では最も大きな恩恵を受ける。これはHSPがうつになりやすいことと同時に、適切なサポートで最も回復しやすいことも意味している。</p>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 7: TIPS ===== -->
+  <section class="section" id="sec-tips">
+    <div class="section-header">
+      <div class="section-icon icon-teal">🌱</div>
+      <div>
+        <div class="section-title">脳科学に基づくセルフケア戦略</div>
+        <div class="section-desc">研究エビデンスに裏付けられた実践アプローチ</div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+      <div>
+        <p style="font-size: 12px; color: var(--accent-blue); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px;">HSS型HSP 向け</p>
+        <ul class="tip-list">
+          <li>
+            <span class="tip-num" style="background: rgba(91,141,238,.2); color: var(--accent-blue);">1</span>
+            「刺激の予算管理」：1週間の刺激量を意識的にコントロールし、大きな行動の後は意図的な回復時間を確保する。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(91,141,238,.2); color: var(--accent-blue);">2</span>
+            刺激希求（HSS）が強い時間帯と感受性が高い（疲弊）時間帯を記録し、自分のリズムパターンを把握する。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(91,141,238,.2); color: var(--accent-blue);">3</span>
+            「中強度の新奇体験」：強すぎず弱すぎない刺激（新しいカフェ、短い旅行）でドーパミン需要を満たしながら過刺激を避ける。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(91,141,238,.2); color: var(--accent-blue);">4</span>
+            行動後の自己批判に気づき、「これは扁桃体の後悔反応」と名付けることで前頭前野の認知制御を取り戻す。
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size: 12px; color: var(--accent-rose); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px;">うつ状態にある人 向け</p>
+        <ul class="tip-list">
+          <li>
+            <span class="tip-num" style="background: rgba(232,110,139,.2); color: var(--accent-rose);">1</span>
+            感情を変えようとせず「ある」と観察する感情受容の練習。抵抗がうつを悪化させることが研究で確認されている。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(232,110,139,.2); color: var(--accent-rose);">2</span>
+            1日20〜30分の有酸素運動。BDNFを増加させ、海馬の神経新生を促進する最もエビデンスが強い行動介入。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(232,110,139,.2); color: var(--accent-rose);">3</span>
+            反芻思考に気づいたら「書き出す」ことで外在化し、前頭前野の認知処理に移行させる（エクスプレッシブ・ライティング）。
+          </li>
+          <li>
+            <span class="tip-num" style="background: rgba(232,110,139,.2); color: var(--accent-rose);">4</span>
+            難治性・重症の場合は、TMS・ケタミン・DBSなど神経科学的な介入について専門医に相談する選択肢がある。
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size: 12px; color: var(--accent-teal); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px;">共通して役立つアプローチ</p>
+    <ul class="tip-list">
+      <li>
+        <span class="tip-num" style="background: rgba(78,205,196,.2); color: var(--accent-teal);">★</span>
+        <strong style="margin-right: 4px;">睡眠の最優先：</strong>海馬のグリンパティック系（脳の老廃物除去システム）は主に深い睡眠中に機能する。感情調節と記憶の固定化にも直結する。
+      </li>
+      <li>
+        <span class="tip-num" style="background: rgba(78,205,196,.2); color: var(--accent-teal);">★</span>
+        <strong style="margin-right: 4px;">安全な人間関係：</strong>「感受性の二刀流」仮説により、HSPはポジティブな社会環境から非HSPより大きく回復する。一人の信頼できる関係が重要。
+      </li>
+      <li>
+        <span class="tip-num" style="background: rgba(78,205,196,.2); color: var(--accent-teal);">★</span>
+        <strong style="margin-right: 4px;">刺激の「質」の最適化：</strong>量を減らすのではなく、意味のある刺激（自然、音楽、芸術）を選ぶことで神経系が穏やかに満たされる。
+      </li>
+      <li>
+        <span class="tip-num" style="background: rgba(78,205,196,.2); color: var(--accent-teal);">★</span>
+        <strong style="margin-right: 4px;">自己知識としての脳科学：</strong>「私が傷つきやすいのは弱さではなく神経系の構造的特性」という理解が、慢性的な自己批判のサイクルを断ち切る入口になる。
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== SECTION 8: SOURCES ===== -->
+  <section class="section" id="sec-sources">
+    <div class="section-header">
+      <div class="section-icon icon-blue">📚</div>
+      <div>
+        <div class="section-title">参考文献・情報源</div>
+        <div class="section-desc">このページの情報は以下の研究・機関に基づいています</div>
+      </div>
+    </div>
+    <div class="sources-grid">
+      <div class="source-item">
+        <span>京都大学 / Neuron (2024)</span>
+        ケタミン誘導体の抗うつ作用と視床室傍核（PVT）の役割
+      </div>
+      <div class="source-item">
+        <span>東北大学プレスリリース (2025)</span>
+        うつ病モデルマウスの転写因子Tcf/Lef1・Restの発見
+      </div>
+      <div class="source-item">
+        <span>ScienceDaily / 国際研究 (2025)</span>
+        うつ病における神経細胞・ミクログリアの遺伝子発現変化
+      </div>
+      <div class="source-item">
+        <span>東京都医学総合研究所</span>
+        前頭前野オリゴデンドロサイト減少とうつ病の関係
+      </div>
+      <div class="source-item">
+        <span>Frontiers in Psychology (2025)</span>
+        感覚処理感受性（SPS）と心理的アウトカムの関係
+      </div>
+      <div class="source-item">
+        <span>Discover Psychology / Springer (2024)</span>
+        SPS・感情調節・うつ病・コーピング戦略の媒介関係
+      </div>
+      <div class="source-item">
+        <span>PLOS One (2025)</span>
+        SPS関連の心理的要因の系統的分析
+      </div>
+      <div class="source-item">
+        <span>Behavioral Psychology (2025)</span>
+        HSP尺度の妥当性研究とSPS有病率
+      </div>
+      <div class="source-item">
+        <span>Current Psychology / Springer (2025)</span>
+        SPSと前頭前野症状の関係（うつ病の媒介効果）
+      </div>
+      <div class="source-item">
+        <span>Medical Xpress / Cornell (2025)</span>
+        サイロシビンによる皮質フィードバック回路の変化
+      </div>
+      <div class="source-item">
+        <span>Scientific American (2025)</span>
+        家庭用TMS機器のFDA承認
+      </div>
+      <div class="source-item">
+        <span>日本感受性研究 / 飯村周平（東京大学）</span>
+        HSP研究の現状と課題（学術的観点からの整理）
+      </div>
+    </div>
+    <div class="caution" style="margin-top: 20px;">
+      <div class="caution-icon">📋</div>
+      <div>
+        <strong style="display:block; margin-bottom:4px; color: var(--accent-amber);">免責事項</strong>
+        このページは情報提供を目的とし、医学的診断・治療を代替するものではありません。症状が続く場合は精神科・心療内科の専門医への相談を強くお勧めします。研究知見はあなたの状況に「当てはまる説明」であっても、「処方」ではありません。
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>最終更新：2025年（2024–2025年の研究に基づく）</p>
+  <p style="margin-top: 6px;">このページはあなたの脳とこころを理解するための出発点です。知識は力、そして自己理解は回復の扉。</p>
+</footer>
+
+<script>
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  const sections = document.querySelectorAll('.section');
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const sectionIds = ['sec-hsp','sec-hss','sec-brain','sec-depression','sec-treatment','sec-overlap','sec-tips','sec-sources'];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sectionIds.indexOf(e.target.id);
+        navBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
